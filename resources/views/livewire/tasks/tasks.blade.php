@@ -1,0 +1,194 @@
+<div>
+    @can('задачи (чтение)')
+    @if($isClosedEditor)
+
+        <div class="grid grid-cols-2 mb-5">
+
+            <form class="col-span-1 mr-5" wire:submit.prevent>
+                <div class="grid grid-cols-6">
+                    <div class='flex items-center justify-between w-full col-span-3'>
+                        <label class="w-12 h-full myLabel colorA2"><img src="{{asset('/icons/search.svg')}}" class='w-6 h-6 bg-cover fill-white'></label>
+                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                            <option value="id">Id</option>
+                            <option value="name">Название</option>
+                            <option value="user_id">Id Исполнителя</option>
+                            <option value="project_id">Id Ремонта</option>
+                        </select>
+                    </div>
+
+                    <div class='flex items-center justify-between w-full col-span-3'>
+                        <input type='text' wire:model.live="form.text" class='flex items-center justify-center w-full input'>
+                        <button type='reset' wire:click.live='resetSearch()' class="w-12 h-full px-1 py-1 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="col-span-1" wire:submit.prevent>
+                <div class="grid grid-cols-6">
+                    <div class='flex items-center justify-between w-full col-span-3'>
+                        <label class="w-12 h-full myLabel colorA2">
+                            @if ($sort->dir == 'asc' )
+                                <img src="{{asset('/icons/down.svg')}}" class='w-6 h-6 bg-cover fill-white'>
+                            @else
+                                <img src="{{asset('/icons/up.svg')}}" class='w-6 h-6 bg-cover fill-white'>
+                            @endif
+                        </label>
+                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                            <option value="id">Id</option>
+                            <option value="name">Название</option>
+                            <option value="project_id">Id Ремонта</option>
+                            <option value="user_id">Id Исполнителя</option>
+                        </select>
+                    </div>
+
+                    <div class='flex items-center justify-between w-full col-span-3'>
+                        <select wire:model.live="sort.dir" class='flex items-center justify-center w-full input'>
+                            <option value="desc">по убыванию</option>
+                            <option value="asc">по возрастанию</option>
+                        </select>
+                        <button type='reset' wire:click.live='resetSort()' class="w-12 h-full px-1 py-1 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+            <div>
+                <div class="grid grid-cols-12 mt-1 mb-1 space-x-0.5">
+                    <p class="col-span-1 h-7 borderA colorA2">Id</p>
+                    <p class="col-span-2 h-7 borderA colorA2">Ремонт</p>
+                    <p class="col-span-4 h-7 borderA colorA2">Задача</p>
+                    <p class="col-span-2 h-7 borderA colorA2">Исполнитель</p>
+                    <div class="col-span-3">
+                        <div class="flex flex-row h-full space-x-0.5">
+
+                            <div class="w-full borderA colorA2">
+                                <p class='flex items-center justify-center h-7'>Статус</p>
+                            </div>
+
+                            <div class='flex space-x-0.5'>
+                                <div class='flex items-center justify-center w-10 borderA colorA2'>
+                                </div>
+
+                                <div class='flex items-center justify-center w-10 colorA2'>
+                                </div>
+
+                                @can('задачи (редактирование)')
+                                    <div class='flex items-center justify-center w-10 colorA2'>
+                                    </div>
+                                @endcan
+
+                                @can('задачи (удаление)')
+                                    <div class='flex items-center justify-center w-10 colorA2'>
+                                    </div>
+                                @endcan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @foreach($tasks as $task)
+                    <div class="grid h-8 grid-cols-12 mt-1 mb-1 space-x-0.5">
+                        <div class="col-span-1 borderC">
+                            <p class='flex items-center justify-center h-8'>{{$task->id}}</p>
+                        </div>
+                        <div class="col-span-2 borderC">
+                            <p class='flex items-center justify-center h-8'>({{$task->project_id}}) {{$task->project->name}}</p>
+                        </div>
+                        <div class="col-span-4 borderC">
+                            <p class='flex items-center justify-center h-8'>{{$task->name}}</p>
+                        </div>
+                        <div class="col-span-2 borderC">
+                            <p class='flex items-center justify-center h-8'>{{$task->user == null ? '-' : '('.$task->user_id.') '.$task->user->fio()}}</p>
+                        </div>
+                        <div class="col-span-3">
+                            <div class="flex flex-row h-full space-x-0.5">
+                                <div class="w-full col-span-3 borderC">
+                                    <p class='flex items-center justify-center h-8'>{{$task->status}} </p>
+                                </div>
+
+                                <div class="space-x-0.5 flex">
+
+                                        @if ($task->status == 'Новая')
+                                            <button wire:key='accept_task_{{$task->id}}' wire:click="accept({{$task->id}})" class='flex items-center justify-center w-10 bg-yellow-500 hover:bg-yellow-400'>
+                                                <img src="{{asset('/icons/add.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                            </button>
+                                        @elseif ($task->status == 'В работе')
+                                            <button wire:key='finish_task_{{$task->id}}' wire:click="finish({{$task->id}})" class='flex items-center justify-center w-10 bg-gray-500 hover:bg-gray-400'>
+                                                <img src="{{asset('/icons/tick.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                            </button>
+                                        @else
+                                            <div class='flex items-center justify-center w-10 bg-green-500 hover:bg-green-400'>
+                                                <img src="{{asset('/icons/tick.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                            </div>
+                                        @endif
+
+                                    <button wire:key='read_tasks_{{$task->id}}' wire:click="read({{$task->id}})" class='flex items-center justify-center w-10 colorA'>
+                                        <img src="{{asset('/icons/info.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                    </button>
+
+                                    @can('задачи (редактирование)')
+                                        <button wire:key='edit_tasks_{{$task->id}}' wire:click="edit({{$task->id}})" class='flex items-center justify-center w-10 colorB'>
+                                            <img src="{{asset('/icons/edit.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                        </button>
+                                    @endcan
+                                    @can('задачи (удаление)')
+                                        <button wire:key='del_tasks_{{$task->id}}' wire:click="try2Delete({{$task->id}})" class='flex items-center justify-center w-10 colorR'>
+                                            <img src="{{asset('/icons/cross.svg')}}" class='w-8 h-8 bg-cover fill-white'>
+                                        </button>
+                                    @endcan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+    @endif
+
+    <livewire:tasks.read-tasks>
+    <livewire:tasks.edit-tasks>
+
+    @can('задачи (удаление)')
+        @if($del_id != 0)
+            <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full overflow-y-auto bg-gray-600 bg-opacity-50 insert-0">
+                <div class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
+                    <div class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
+                        Удаление задачи
+                    </div>
+                    <div class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
+                        Вы точно хотите удалить задачу? Это действие нельзя будет отменить!
+                    </div>
+                    <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
+                        <button wire:click.prevent='discardDelete()' class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                            Нет
+                        </button>
+                        <button wire:click='acceptDelete()' class="px-6 py-3 mr-1 font-sans text-xs font-bold text-green-500 uppercase transition-all rounded-lg middle none center hover:bg-green-500/10 active:bg-green-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                            Да
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endcan
+
+    @can('задачи (редактирование)')
+        @if($finishError)
+            <div class="fixed top-0 left-0 flex items-center justify-center w-full h-full overflow-y-auto bg-gray-600 bg-opacity-50 insert-0">
+                <div class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
+                    <div class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
+                    Завершение задачи невозможно
+                    </div>
+                    <div class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
+                    Вы не являетесь исполнителем задачи!
+                    </div>
+                    <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
+                    <button wire:click.prevent='discardError()' class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                        Ок
+                    </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endcan
+
+    @endcan
+</div>

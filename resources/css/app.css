@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn{
+    @apply h-10 px-1 py-1;
+}
+
+.ctext{
+    @apply flex items-center justify-center;
+}
+
+.myLabel{
+    @apply flex items-center justify-center;
+}
+
+.roleHeader{
+    @apply flex items-center justify-center h-1;
+}
+.colorA {
+    @apply bg-blue-500 text-white hover:bg-blue-400;
+}
+
+.colorB{
+    @apply bg-blue-400 text-white hover:bg-blue-500;
+}
+
+.colorR{
+    @apply bg-red-500 text-white hover:bg-red-400;
+}
