@@ -50,6 +50,11 @@
                             {{ __('Роли') }}
                         </x-nav-link>
                     @endcan
+                    @can('лиды (чтение)')
+                        <x-nav-link :href="route('statics')" :active="request()->routeIs('statics')">
+                            {{ __('Сегодняшние лиды') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
