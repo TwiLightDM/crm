@@ -5,9 +5,9 @@
         @can('отделы (создание)')
             <div class="grid grid-cols-7 mb-5">
                 <div class="col-span-1 colorA2">
-                    <button wire:click='createDepartment()' class="flex items-center justify-between w-full btn">
-                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 ml-1 bg-cover fill-white'>
-                        <span class='mr-3'>Отдел</span>
+                    <button wire:click='createDepartment()' class="flex items-center justify-center rounded-lg shadow-md hover:shadow-xl w-full btn bg-beige hover:bg-beige-dark text-gray-800">
+                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 mr-2 bg-cover fill-white'>
+                        <span class='ml-2'>Отдел</span>
                     </button>
                 </div>
             </div>
@@ -15,7 +15,7 @@
 
         <div>
             <div class="grid grid-cols-5 mt-1 mb-1 space-x-0.5"> 
-                <p class="col-span-1 h-7 borderA colorA2">Id</p>
+                <p class="col-span-1 h-7 borderA colorA2 text-center"> Id</p>
                 <div class="col-span-4">
                         <div class="flex flex-row h-full space-x-0.5">
 
@@ -55,16 +55,16 @@
                                 </div>
 
                                 <div class="space-x-0.5 flex">
-                                    <button wire:key='read_departments_{{$department->id}}' wire:click="read({{$department->id}})" class='flex items-center justify-center w-10 colorA'>
+                                    <button wire:key='read_departments_{{$department->id}}' wire:click="read({{$department->id}})" class='flex items-center justify-center w-10'>
                                         <img src="{{asset('/icons/info.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                     </button>
                                     @can('отделы (редактирование)')
-                                        <button wire:key='edit_departments_{{$department->id}}' wire:click="edit({{$department->id}})" class='flex items-center justify-center w-10 colorB'>
+                                        <button wire:key='edit_departments_{{$department->id}}' wire:click="edit({{$department->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/edit.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan
                                     @can('отделы (удаление)')
-                                        <button wire:key='del_departments_{{$department->id}}' wire:click="try2Delete({{$department->id}})" class='flex items-center justify-center w-10 colorR'>
+                                        <button wire:key='del_departments_{{$department->id}}' wire:click="try2Delete({{$department->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/cross.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan

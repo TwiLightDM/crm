@@ -2,10 +2,10 @@
     @if($meeting != null)
         <div class="flex justify-between">
             <p class='font-bold'>Встреча # {{$meeting->id}}</p>
-            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
-        <p class="mb-1 Header colorA2">Общая информация</p>
+        <p class="mb-2 mt-2 font-bold Header colorA2">Общая информация</p>
 
         <div class="w-300">
 

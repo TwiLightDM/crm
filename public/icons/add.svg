@@ -1,24 +1,4 @@
-<?xml version="1.0" ?>
-
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
-<title/>
-
-<g id="Complete">
-
-<g data-name="add" id="add-2">
-
-<g>
-
-<line fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="19" y2="5"/>
-
-<line fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="5" x2="19" y1="12" y2="12"/>
-
-</g>
-
-</g>
-
-</g>
-
+<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.4375 22.5H22.6875M22.6875 22.5H32.9375M22.6875 22.5V12.25M22.6875 22.5V32.75" stroke="black" stroke-width="2.5625" stroke-linecap="round"/>
+<path d="M27.511 43H34.7463M43.1875 10.4412V18.8824M9.42279 43H11.8346M7.01103 2H38.364C41.028 2 43.1875 4.15957 43.1875 6.82353V38.1765C43.1875 40.8405 41.028 43 38.364 43H7.01103C4.34707 43 2.1875 40.8405 2.1875 38.1765V6.82353C2.1875 4.15957 4.34707 2 7.01103 2Z" stroke="black" stroke-width="2.5625" stroke-linecap="round"/>
 </svg>

@@ -51,6 +51,10 @@ Route::get('/tasksManager', function () {
     return view('tasks');
 })->middleware(['auth', 'verified', 'can:задачи (чтение)'])->name('tasks');
 
+Route::get('/staticsManager', function () {
+    return view('statics');
+})->middleware(['auth', 'verified'])->name('statics');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -5,11 +5,20 @@
 
         <div class="grid grid-cols-7 mb-5">
 
+            @can('лиды (создание)')
+                <div class="col-span-1">
+                    <button wire:click='createLead()' class="flex items-center justify-center rounded-lg shadow-md hover:shadow-xl w-full btn bg-beige hover:bg-beige-dark text-gray-800">
+                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 mr-2 bg-cover fill-white'>
+                        <span class='ml-2'>Лид</span>
+                    </button>
+                </div>
+            @endcan
+
             <form class="col-span-3 mr-5" wire:submit.prevent>
                 <div class="grid grid-cols-6">
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <label class="w-12 h-full myLabel colorA2"><img src="{{asset('/icons/search.svg')}}" class='w-6 h-6 bg-cover fill-white'></label>
-                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="surname">Фамилия</option>
                             <option value="phone">Телефон</option>
@@ -19,7 +28,7 @@
 
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <input type='text' wire:model.live="form.text" class='flex items-center justify-center w-full input'>
-                        <button type='reset' wire:click.live='resetSearch()' class="flex items-center justify-center w-12 h-full px-1 py-1 colorR">
+                        <button type='reset' wire:click.live='resetSearch()' class="flex items-center justify-center w-12 h-full px-1 py-1">
                             <img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'>
                         </button>
                     </div>
@@ -36,7 +45,7 @@
                                 <img src="{{asset('/icons/up.svg')}}" class='w-6 h-6 bg-cover fill-white'>
                             @endif
                         </label>
-                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="surname">Фамилия</option>
                             <option value="status">Статус</option>
@@ -48,28 +57,21 @@
                             <option value="desc">по убыванию</option>
                             <option value="asc">по возрастанию</option>                          
                         </select>
-                        <button type='reset' wire:click.live='resetSort()' class="flex items-center justify-center w-12 h-full px-1 py-1 colorR">
+                        <button type='reset' wire:click.live='resetSort()' class="flex items-center justify-center w-12 h-full px-1 py-1">
                             <img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'>
                         </button>
                     </div>
                 </div>
             </form>
 
-            @can('лиды (создание)')
-                <div class="col-span-1 colorA2">
-                    <button wire:click='createLead()' class="flex items-center justify-between w-full btn">
-                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 ml-1 bg-cover fill-white'>
-                        <span class='mr-3'>Лид</span>
-                    </button>
-                </div>
-            @endcan
+          
         </div>
 
             <div>
                 <div class="grid grid-cols-11 mt-1 mb-1 space-x-0.5">
-                    <p class="col-span-1 h-7 borderA colorA2">Id</p>
-                    <p class="col-span-3 h-7 borderA colorA2">ФИО</p>
-                    <p class="col-span-3 h-7 borderA colorA2">Телефон</p>
+                    <p class="col-span-1 h-7 borderA colorA2 text-center">Id</p>
+                    <p class="col-span-3 h-7 borderA colorA2 text-center">ФИО</p>
+                    <p class="col-span-3 h-7 borderA colorA2 text-center">Телефон</p>
 
                     <div class="col-span-4">
                         <div class="flex flex-row h-full space-x-0.5">
@@ -114,16 +116,16 @@
                                 </div>
 
                                 <div class="space-x-0.5 flex">
-                                    <button wire:key='read_leads_{{$lead->id}}' wire:click="readLead({{$lead->id}})" class='flex items-center justify-center w-10 colorA'>
+                                    <button wire:key='read_leads_{{$lead->id}}' wire:click="readLead({{$lead->id}})" class='flex items-center justify-center w-10'>
                                         <img src="{{asset('/icons/info.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                     </button>
                                     @can('лиды (редактирование)')
-                                        <button wire:key='edit_leads_{{$lead->id}}' wire:click="editLead({{$lead->id}})" class='flex items-center justify-center w-10 colorB'>
+                                        <button wire:key='edit_leads_{{$lead->id}}' wire:click="editLead({{$lead->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/edit.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan
                                     @can('лиды (удаление)')
-                                        <button wire:key='del_leads_{{$lead->id}}' wire:click="try2Delete({{$lead->id}})" class='flex items-center justify-center w-10 colorR'>
+                                        <button wire:key='del_leads_{{$lead->id}}' wire:click="try2Delete({{$lead->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/cross.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan
@@ -162,5 +164,8 @@
         @endif
     @endcan
 
+
+
     @endcan
+
 </div>

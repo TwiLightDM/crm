@@ -2,10 +2,10 @@
     @if($department != null)
         <div class="flex justify-between">
             <p class='font-bold'>Отдел # {{$department->id}}</p>
-            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
-        <p class="mb-1 Header colorA2">Общая информация</p>
+        <p class="mb-2 mt-2 Header colorA2 font-bold">Общая информация</p>
 
         <div class="w-300">
             <div class="grid grid-cols-6 mb-1">
@@ -15,7 +15,7 @@
         </div>
 
         @can('сотрудники (чтение)')
-            <p class="mb-1 Header colorA2">Сотрудники</p>
+            <p class="mb-2 mt-5 Header colorA2 font-bold">Сотрудники</p>
 
             <div class="w-300">
                 @foreach($department->users as $emp)

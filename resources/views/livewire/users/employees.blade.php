@@ -4,11 +4,20 @@
 
         <div class="grid grid-cols-7 mb-5">
 
+            @can('сотрудники (создание)')
+                <div class="col-span-1 colorA2">
+                    <button wire:click='createUser()' class="flex items-center justify-center rounded-lg w-full btn bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl">
+                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 mr-2 bg-cover fill-white'>
+                        <span class='ml-2'>Сотрудник</span>
+                    </button>
+                </div>
+            @endcan
+
             <form class="col-span-3 mr-5" wire:submit.prevent>
                 <div class="grid grid-cols-6">
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <label class="w-12 h-full myLabel colorA2"><img src="{{asset('/icons/search.svg')}}" class='w-6 h-6 bg-cover fill-white'></label>
-                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="surname">Фамилия</option>
                         </select>
@@ -16,7 +25,7 @@
 
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <input type='text' wire:model.live="form.text" class='flex items-center justify-center w-full input'>
-                        <button type='reset' wire:click.live='resetSearch()' class="w-12 h-full px-1 py-1 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                        <button type='reset' wire:click.live='resetSearch()' class="w-12 h-full px-1 py-1 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
                     </div>
                 </div>
             </form>
@@ -31,7 +40,7 @@
                                 <img src="{{asset('/icons/up.svg')}}" class='w-6 h-6 bg-cover fill-white'>
                             @endif
                         </label>
-                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="surname">Фамилия</option>
                         </select>
@@ -42,26 +51,19 @@
                             <option value="desc">по убыванию</option>
                             <option value="asc">по возрастанию</option>                         
                         </select>
-                        <button type='reset' wire:click.live='resetSort()' class="w-12 h-full px-1 py-1 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                        <button type='reset' wire:click.live='resetSort()' class="w-12 h-full px-1 py-1 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
                     </div>
                 </div>
             </form>
 
-            @can('сотрудники (создание)')
-                <div class="col-span-1 colorA2">
-                    <button wire:click='createUser()' class="flex items-center justify-between w-full btn">
-                        <img src="{{asset('/icons/add.svg')}}" class='w-6 h-6 ml-1 bg-cover fill-white'>
-                        <span class='mr-3'>Сотрудник</span>
-                    </button>
-                </div>
-            @endcan
+          
         </div>
 
         <div>
             <div class="grid grid-cols-12 mt-1 mb-1 space-x-0.5"> 
-                <p class="col-span-1 h-7 borderA colorA2">Id</p>
-                <p class="col-span-5 h-7 borderA colorA2">ФИО</p>
-                <p class="col-span-3 h-7 borderA colorA2">Email</p>
+                <p class="col-span-1 h-7 borderA text-center colorA2">Id</p>
+                <p class="col-span-5 h-7 borderA text-center colorA2">ФИО</p>
+                <p class="col-span-3 h-7 borderA text-center colorA2">Email</p>
 
 
                 <div class="col-span-3">
@@ -121,16 +123,16 @@
                                             </button>
                                         @endif
                                     @endcan
-                                    <button wire:key='read_users_{{$user->id}}' wire:click="read({{$user->id}})" class='flex items-center justify-center w-10 colorA'>
+                                    <button wire:key='read_users_{{$user->id}}' wire:click="read({{$user->id}})" class='flex items-center justify-center w-10'>
                                         <img src="{{asset('/icons/info.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                     </button>
                                     @can('сотрудники (редактирование)')
-                                        <button wire:key='edit_users_{{$user->id}}' wire:click="edit({{$user->id}})" class='flex items-center justify-center w-10 colorB'>
+                                        <button wire:key='edit_users_{{$user->id}}' wire:click="edit({{$user->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/edit.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan
                                     @can('сотрудники (удаление)')
-                                        <button wire:key='del_user_{{$user->id}}' wire:click="try2Delete({{$user->id}})" class='flex items-center justify-center w-10 colorR'>
+                                        <button wire:key='del_user_{{$user->id}}' wire:click="try2Delete({{$user->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/cross.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan

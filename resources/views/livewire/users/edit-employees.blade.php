@@ -10,10 +10,10 @@
 
         <div class="flex justify-between">
             <p class='font-bold'>Сотрудник #{{$id}}</p>
-            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
-        <p class="mb-1 Header colorA2">Общая информация</p>
+        <p class="mb-2 mt-2 font-bold Header colorA2">Общая информация</p>
 
          @if (session()->has('edit-info'))              
             <div class="grid h-10 grid-cols-9 mt-1 mb-1 bg-green-300">   
@@ -61,13 +61,13 @@
 
             @can('сотрудники (редактирование)')
                 <div class="grid grid-cols-6 gap-1 mb-5">
-                    <button type="submit" class="col-start-6 btn colorA2">Изменить</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Изменить</button>
                 </div>
             @endcan
         </form>
 
         @can('сотрудники (редактирование)')
-            <p class="mb-1 Header colorA2">Изменить пароль</p>
+            <p class="mb-2 mt-5 Header colorA2 font-bold">Изменить пароль</p>
 
              @if (session()->has('edit-password'))              
                 <div class="grid h-10 grid-cols-9 mt-1 mb-1 bg-green-300">   
@@ -93,13 +93,13 @@
                 </div>
 
                 <div class="grid grid-cols-6 gap-1 mb-5">
-                    <button type="submit" class="col-start-6 btn colorA2">Изменить</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Изменить</button>
                 </div>
             </form>
         @endcan
 
         @can('сотрудники (редактирование)')
-            <p class="mb-1 Header colorA2">Изменить роль</p>
+            <p class="mb-2 mt-5 Header colorA2 font-bold">Изменить роль</p>
 
              @if (session()->has('edit-role'))              
                 <div class="grid h-10 grid-cols-9 mt-1 mb-1 bg-green-300">   
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="grid grid-cols-6 gap-1 mb-5 ">
-                    <button type="submit" class="col-start-6 btn colorA2">Изменить</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Изменить</button>
                 </div>
             </form>
         @endcan

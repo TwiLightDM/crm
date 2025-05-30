@@ -2,10 +2,10 @@
     @if($role != null)
         <div class="flex justify-between">
             <p class='font-bold'>Роль # {{$role->id}}</p>
-            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="close()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
-        <p class="mb-1 Header colorA2">Общая информация</p>
+        <p class="mb-2 mt-2 Header colorA2 font-bold">Общая информация</p>
 
         <div class="w-300">
             <div class="grid grid-cols-6 mb-1">
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <p class="mb-1 Header colorA2">Разрешения</p>
+        <p class="mb-1 mt-5 font-bold Header colorA2">Разрешения</p>
 
         <div>
             @php($i = 0)
@@ -26,9 +26,9 @@
                             <p class="text-black">{{$name}}</p>
                         </div>
                         @if ($value)
-                            <img class='w-10 h-10 bg-green-500 hover:bg-green-400' src="{{asset('/icons/tick.svg')}}">
+                            <img class='w-10 h-10' src="{{asset('/icons/tick-green.svg')}}">
                         @else
-                            <img class='w-10 h-10 bg-red-500 hover:bg-red-400' src="{{asset('/icons/cross.svg')}}">
+                            <img class='w-10 h-10' src="{{asset('/icons/cross-red.svg')}}">
                         @endif
                     </div>
 
@@ -38,7 +38,7 @@
         </div>
 
         @can('сотрудники (чтение)')
-            <p class="mb-1 Header colorA2">Пользователи Роли</p>
+            <p class="mb-2 mt-5 font-bold Header colorA2">Пользователи Роли</p>
 
             <div class="w-300">
                 @foreach(App\Models\User::select('users.*')

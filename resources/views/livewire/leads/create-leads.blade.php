@@ -3,7 +3,7 @@
 
         <div class="flex justify-between">
             <p class='col-span-5 font-bold'>Добавление нового лида</p>
-            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-4 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-4 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
 
@@ -42,7 +42,7 @@
 
             @can('лиды (создание)')
                 <div class="grid grid-cols-6 gap-1 mt-3">
-                    <button type="submit" class="col-start-6 btn colorA2">Создать</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Создать</button>
                 </div>
             @endcan
         </form>

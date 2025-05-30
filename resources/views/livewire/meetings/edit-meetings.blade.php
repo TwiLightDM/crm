@@ -3,7 +3,7 @@
 
         <div class="flex justify-between">
             <p class='col-span-5 font-bold'>Встреча # {{$id}}</p>
-            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
         @if (session()->has('edit-info'))
@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <p class="mb-1 Header colorA2">Общая информация</p>
+        <p class="mb-2 mt-2 Header colorA2 font-bold">Общая информация</p>
 
         <form wire:submit.prevent="edit()" class="w-300">
 
@@ -34,13 +34,13 @@
 
             @can('встречи (редактирование)')
                 <div class="grid grid-cols-6 gap-1">
-                    <button type="submit" class="col-start-6 btn colorA2">Изменить</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Изменить</button>
                 </div>
             @endcan
         </form>
 
         @can('проекты (создание)')
-            <p class="mt-5 mb-1 Header colorA2">Создать ремонтную цель</p>
+            <p class="mt-5 mb-2 Header colorA2 font-bold">Создать ремонтную цель</p>
 
             <form wire:submit.prevent="createProject()" class="w-300">
                 <div class="grid">
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="grid grid-cols-6 gap-1">
-                    <button type="submit" class="col-start-6 btn colorA2">Создать</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Создать</button>
                 </div>
             </form>
         @endcan

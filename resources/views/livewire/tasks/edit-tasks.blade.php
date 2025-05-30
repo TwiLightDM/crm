@@ -8,7 +8,7 @@
 
         <div class="flex justify-between">
             <p class='col-span-5 font-bold'>Роль #{{$id}}</p>
-            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 colorR ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+            <button wire:click="closeEditor()" class="w-10 h-10 px-1 py-1 mb-5 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
         </div>
 
         @if (session()->has('edit-info'))              
@@ -54,7 +54,7 @@
             
             @can('роли (редактирование)')
                 <div class="grid grid-cols-4 gap-1 mt-5">
-                    <button type="submit" class="col-start-4 btn colorA2">Изменить</button>
+                    <button type="submit" class="col-start-4 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Изменить</button>
                 </div>
             @endcan
         </form>

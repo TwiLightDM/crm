@@ -8,7 +8,7 @@
                 <div class="grid grid-cols-6">
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <label class="w-12 h-full myLabel colorA2"><img src="{{asset('/icons/search.svg')}}" class='w-6 h-6 bg-cover fill-white'></label>
-                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="form.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="lead_id">Навзание</option>
                             <option value="status">Статус</option>
@@ -17,7 +17,7 @@
 
                     <div class='flex items-center justify-between w-full col-span-3'>
                         <input type='text' wire:model.live="form.text" class='flex items-center justify-center w-full input'>
-                        <button type='reset' wire:click.live='resetSearch()' class="w-12 h-full px-1 py-1 ctext colorR"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                        <button type='reset' wire:click.live='resetSearch()' class="w-12 h-full px-1 py-1 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
                     </div>
                 </div>
             </form>
@@ -32,7 +32,7 @@
                                 <img src="{{asset('/icons/up.svg')}}" class='w-6 h-6 bg-cover fill-white'>
                             @endif
                         </label>
-                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-l-0 border-r-0 input">
+                        <select wire:model.live="sort.field" class="flex items-center justify-center w-full border-r-0 input">
                             <option value="id">Id</option>
                             <option value="lead_id">Название</option>
                             <option value="date">Дедлайн</option>
@@ -45,7 +45,7 @@
                             <option value="desc">по убыванию</option>
                             <option value="asc">по возрастанию</option>
                         </select>
-                        <button type='reset' wire:click.live='resetSort()' class="w-12 h-full px-1 py-1 ctext colorR"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
+                        <button type='reset' wire:click.live='resetSort()' class="w-12 h-full px-1 py-1 ctext"><img src="{{asset('/icons/cross.svg')}}" class='w-6 h-6 bg-cover fill-white'></button>
                     </div>
                 </div>
             </form>
@@ -53,10 +53,10 @@
 
             <div>
                 <div class="grid grid-cols-11 mt-1 mb-1 space-x-0.5">
-                    <p class="col-span-1 h-7 borderA colorA2">Id</p>
-                    <p class="col-span-2 h-7 borderA colorA2">Название</p>
-                    <p class="col-span-2 h-7 borderA colorA2">Лид</p>
-                    <p class="col-span-2 h-7 borderA colorA2">Дедлайн</p>
+                    <p class="col-span-1 h-7 borderA text-center colorA2">Id</p>
+                    <p class="col-span-2 h-7 borderA text-center colorA2">Название</p>
+                    <p class="col-span-2 h-7 borderA text-center colorA2">Лид</p>
+                    <p class="col-span-2 h-7 borderA text-center colorA2">Дедлайн</p>
                     <div class="col-span-4">
                         <div class="flex flex-row h-full space-x-0.5">
 
@@ -103,16 +103,16 @@
                                 </div>
 
                                 <div class="space-x-0.5 flex">
-                                    <button wire:key='read_projects_{{$project->id}}' wire:click="read({{$project->id}})" class='flex items-center justify-center w-10 colorA'>
+                                    <button wire:key='read_projects_{{$project->id}}' wire:click="read({{$project->id}})" class='flex items-center justify-center w-10'>
                                         <img src="{{asset('/icons/info.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                     </button>
                                     @can('проекты (редактирование)')
-                                        <button wire:key='edit_projects_{{$project->id}}' wire:click="edit({{$project->id}})" class='flex items-center justify-center w-10 colorB'>
+                                        <button wire:key='edit_projects_{{$project->id}}' wire:click="edit({{$project->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/edit.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan
                                     @can('проекты (удаление)')
-                                        <button wire:key='del_projects_{{$project->id}}' wire:click="try2Delete({{$project->id}})" class='flex items-center justify-center w-10 colorR'>
+                                        <button wire:key='del_projects_{{$project->id}}' wire:click="try2Delete({{$project->id}})" class='flex items-center justify-center w-10'>
                                             <img src="{{asset('/icons/cross.svg')}}" class='w-8 h-8 bg-cover fill-white'>
                                         </button>
                                     @endcan

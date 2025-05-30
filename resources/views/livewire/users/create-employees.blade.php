@@ -88,7 +88,7 @@
                 @error('form.password_confirmation') <div class="text-red-600 text-end">{{$message}}</div> @enderror
             </div>
                 <div class="grid grid-cols-6 gap-1 mt-5">
-                    <button type="submit" class="col-start-6 btn colorA2">Зарегистрировать</button>
+                    <button type="submit" class="col-start-6 btn colorA2 bg-beige hover:bg-beige-dark text-gray-800 shadow-md hover:shadow-xl rounded-lg mt-3 mb-1">Зарегистрировать</button>
                 </div>
         </form>
     @endif
